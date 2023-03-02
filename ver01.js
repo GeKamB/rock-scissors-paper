@@ -4,6 +4,11 @@ let playerScore = 0;
 let computerScore = 0;
 let playerSelection;
 let computerSelection;
+const round = document.querySelector('.round');
+const playerDisplay = document.querySelector('.playerDisplay');
+const computerDisplay = document.querySelector('.computerDisplay');
+
+
 
 
 const buttons = document.querySelectorAll('button');
@@ -12,7 +17,7 @@ buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
     playerSelection = e.target.id 
     computerSelection = ComputerChoice()   
-    playRound(playerSelection, computerSelection)
+    playGame()
     
 
     
@@ -21,8 +26,7 @@ buttons.forEach((button) => {
 
 
 // function to decide computer's random choice
-const ComputerChoice = function () {
-  
+const ComputerChoice = function () {  
     return selection[Math.floor(Math.random() * selection.length)]
     
    
@@ -36,15 +40,9 @@ function playRound(playerSelection, computerSelection) {
       case 'rockscissors':
       case 'paperrock':
          playerScore++;
-         console.log("YOU WIN ! ###  " +
-                      playerSelection +
-                      " beats " +
-                      computerSelection +
-                      " player: " +
-                      playerScore + 
-                      " " + 
-                      "computer: " +
-                       computerScore);
+         round.textContent = `You won ! ${playerSelection} beats ${computerSelection}`;
+         playerDisplay.textContent = `${playerScore}`;
+         computerDisplay.textContent = `${computerScore}`;        
 
           
         break;
@@ -52,32 +50,23 @@ function playRound(playerSelection, computerSelection) {
       case 'scissorsrock':
       case 'rockpaper':
         computerScore++;
-        console.log("YOU LOSE ! ###  " +
-                    computerSelection +
-                    " beats " +
-                    playerSelection +
-                    " ### player: " +
-                     playerScore +
-                     " " +
-                    "computer: " +
-                     computerScore);
+        round.textContent = `You lost ! ${playerSelection} beats ${computerSelection} `;
+        playerDisplay.textContent = `${playerScore}`;
+         computerDisplay.textContent = `${computerScore}`;
+        
         
         break;
       case 'paperpaper':
       case 'scissorsscissors':
       case 'rockrock':
-        console.log("It's a draw ###  " +
-                    playerSelection +
-                     " : " +
-                     computerSelection +
-                     " player: " +
-                     playerScore + 
-                     " " + 
-                     "computer: " + 
-                     computerScore);
+        round.textContent = `It's a draw !`;
+        playerDisplay.textContent = `${playerScore}`;
+         computerDisplay.textContent = `${computerScore}`;
+
       
       break
     }
+    
   }
 
   
@@ -85,21 +74,53 @@ function playRound(playerSelection, computerSelection) {
   
    
  
-//This function plays five rounds of the playGame function.
-/*
-function playGame() {
 
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt();
-    const computerSelection = ComputerChoice();
-    playRound(playerSelection, computerSelection);
+function playGame() {  
 
+  playRound(playerSelection, computerSelection); 
+  
+  if (playerScore == 5 || computerScore == 5) {
+    setGameOver()
+  } 
+
+  
    
-}
+
 
 }
 
-playGame() */
+function setGameOver() {   
+  document.getElementById("rock").disabled = true;
+  document.getElementById("scissors").disabled = true;
+  document.getElementById("paper").disabled = true;
+  resetButton = document.createElement('button');
+  resetButton.setAttribute('id', 'reset')
+  resetButton.textContent = 'Start new game';
+  document.body.append(resetButton);  
+  resetButton.addEventListener('click', resetGame);
+  document.getElementById('reset').focus();
+  
+}
+
+function resetGame() {
+  document.getElementById("rock").disabled = false;
+  document.getElementById("scissors").disabled = false;
+  document.getElementById("paper").disabled = false;
+  playerScore = 0;
+  computerScore = 0;
+  round.textContent = "";
+  playerDisplay.textContent = `${playerScore}`;
+  computerDisplay.textContent = `${computerScore}`;
+
+  
+  resetButton.parentNode.removeChild(resetButton);
+  
+
+  
+}
+
+
+
 
 
 

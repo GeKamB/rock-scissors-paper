@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+    font-size: 1.5rem;
+    font-family:Impact, sans-serif;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.round {
+    height: 1.5rem;
+}
+
+#game {
+    min-width: 300px;
+    min-height: 300px;
+    width: 300px;
+    margin: 0 auto;
+    
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+}
