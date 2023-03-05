@@ -32,6 +32,7 @@ buttons.forEach((button) => {
 const btt1ns = Array.from(document.querySelectorAll('.bttn'));
 btt1ns.forEach(key => key.addEventListener('transitionend', removeTransition));
 
+
 // function to decide computer's random choice
 const ComputerChoice = function () {  
     return selection[Math.floor(Math.random() * selection.length)]
@@ -72,13 +73,13 @@ function playRound(playerSelection, computerSelection) {
         round.textContent = `It's a draw ${playerSelection} : ${computerSelection}`;
         playerDisplay.textContent = `${playerScore}`;
          computerDisplay.textContent = `${computerScore}`;
-         round.style.color = 'black'
+         round.style.textShadow = '-1px -1px .5rem rgba(134, 248, 3, 0.932)'
          
 
       
       break
     }
-    
+    console.log(playerSelection, computerSelection)
   }
 
   
@@ -129,7 +130,7 @@ function resetGame() {
 
   
   resetButton.parentNode.removeChild(resetButton);
-  playersName();
+  
   
 
   
