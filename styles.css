@@ -11,7 +11,7 @@ body {
     font-family:monospace, sans-serif;
     width: 100%;
     height: 100%;
-    background-color: rgb(48, 43, 61);
+    background-color: rgb(12, 11, 15);
     font-weight: 600;
     color: white;
     
@@ -51,7 +51,8 @@ button {
 button:hover {
     color: white;
     border: .4rem solid rgba(190, 192, 188, 0.747);
-    box-shadow: 0 0 1rem white;
+    text-shadow: 0 0 .5rem rgba(176, 250, 2, 0.815);
+    box-shadow: 0 0 1rem rgba(176, 250, 2, 0.815);
 }
 .playing {
     transform: scale(1.1);
