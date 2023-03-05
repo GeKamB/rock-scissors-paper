@@ -12,6 +12,8 @@ body {
     height: 100%;
     background-color: rgb(48, 43, 61);
     font-weight: 600;
+    color: white;
+    text-shadow: 0 0 .5rem rgb(45, 255, 3);
     
 }
 
@@ -38,10 +40,9 @@ button {
     transition: all .09s ease;
     width: fit-content;
     max-width: 150px;
-    text-align: center;
-    color: white;
+    text-align: center;    
     background: rgba(0,0,0,0.4);
-    text-shadow: 0 0 .5rem rgb(45, 255, 3);
+    
 
   
 }

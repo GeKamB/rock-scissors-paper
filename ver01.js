@@ -10,16 +10,9 @@ const computerDisplay = document.querySelector('.computerDisplay');
 let playerName = document.querySelector('.playerName');
 let name = prompt('What is your name ? ','Player');
 
-function changeName(name) {
-  playerName.textContent = `${name}`; 
-}
+
 
 changeName(name);
-
-
-
-
-
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
@@ -147,6 +140,9 @@ function removeTransition(e) {
   e.target.classList.remove('playing');
 }
 
+function changeName(name) {
+  playerName.textContent = `${name}`; 
+}
 
 
 
