@@ -7,6 +7,15 @@ let computerSelection;
 const round = document.querySelector('.round');
 const playerDisplay = document.querySelector('.playerDisplay');
 const computerDisplay = document.querySelector('.computerDisplay');
+let playerName = document.querySelector('.playerName');
+let name = prompt('What is your name ? ','Player');
+
+function changeName(name) {
+  playerName.textContent = `${name}`; 
+}
+
+changeName(name);
+
 
 
 
@@ -15,8 +24,11 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
-    playerSelection = e.target.id 
-    computerSelection = ComputerChoice()   
+    playerSelection = e.target.id ;
+    computerSelection = ComputerChoice();
+    button.classList.add('playing'); 
+    
+   
     playGame()
     
 
@@ -24,6 +36,8 @@ buttons.forEach((button) => {
   })
 })
 
+const btt1ns = Array.from(document.querySelectorAll('.bttn'));
+btt1ns.forEach(key => key.addEventListener('transitionend', removeTransition));
 
 // function to decide computer's random choice
 const ComputerChoice = function () {  
@@ -34,13 +48,15 @@ const ComputerChoice = function () {
     
 // this function is mechanism of a single round
 function playRound(playerSelection, computerSelection) {
+ 
   
     switch (playerSelection + computerSelection) {
       case 'scissorspaper':
       case 'rockscissors':
       case 'paperrock':
          playerScore++;
-         round.textContent = `You won ! ${playerSelection} beats ${computerSelection}`;
+         round.textContent = `${name} wins! ${playerSelection} beats ${computerSelection}`;
+         round.style.color = "#0be60bd5";
          playerDisplay.textContent = `${playerScore}`;
          computerDisplay.textContent = `${computerScore}`;        
 
@@ -50,7 +66,8 @@ function playRound(playerSelection, computerSelection) {
       case 'scissorsrock':
       case 'rockpaper':
         computerScore++;
-        round.textContent = `You lost ! ${playerSelection} beats ${computerSelection} `;
+        round.textContent = `Computer wins ! ${computerSelection} beats ${playerSelection} `;
+        round.style.color = "red";
         playerDisplay.textContent = `${playerScore}`;
          computerDisplay.textContent = `${computerScore}`;
         
@@ -59,9 +76,11 @@ function playRound(playerSelection, computerSelection) {
       case 'paperpaper':
       case 'scissorsscissors':
       case 'rockrock':
-        round.textContent = `It's a draw !`;
+        round.textContent = `It's a draw ${playerSelection} : ${computerSelection}`;
         playerDisplay.textContent = `${playerScore}`;
          computerDisplay.textContent = `${computerScore}`;
+         round.style.color = 'black'
+         
 
       
       break
@@ -76,6 +95,7 @@ function playRound(playerSelection, computerSelection) {
  
 
 function playGame() {  
+ 
 
   playRound(playerSelection, computerSelection); 
   
@@ -103,6 +123,8 @@ function setGameOver() {
 }
 
 function resetGame() {
+  name = prompt('What is your name ? ','Player');
+  changeName(name);
   document.getElementById("rock").disabled = false;
   document.getElementById("scissors").disabled = false;
   document.getElementById("paper").disabled = false;
@@ -114,9 +136,15 @@ function resetGame() {
 
   
   resetButton.parentNode.removeChild(resetButton);
+  playersName();
   
 
   
+}
+
+function removeTransition(e) {
+  if (e.propertyName !== 'transform') return;
+  e.target.classList.remove('playing');
 }
 
 
