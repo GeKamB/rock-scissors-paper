@@ -1,55 +1,154 @@
-const selection = ["rock", "scissors", "paper"];
-let playerscore = 0;
-let computerscore = 0;
 
-// function to get computer choice
-const getComputerChoice = function() {
-    return selection[Math.floor(Math.random() * selection.length)];
+const selection = ["rock", "scissors", "paper"];
+let playerScore = 0;
+let computerScore = 0;
+let playerSelection;
+let computerSelection;
+const round = document.querySelector('.round');
+const playerDisplay = document.querySelector('.playerDisplay');
+const computerDisplay = document.querySelector('.computerDisplay');
+let playerName = document.querySelector('.playerName');
+let name = prompt('What is your name ? ','Player');
+
+function changeName(name) {
+  playerName.textContent = `${name}`; 
 }
-// single round function can be used  for others game where can be only winner/looser and a draw 
+
+changeName(name);
+
+
+
+
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    playerSelection = e.target.id ;
+    computerSelection = ComputerChoice();
+    button.classList.add('playing'); 
+    
+   
+    playGame()
+    
+
+    
+  })
+})
+
+const btt1ns = Array.from(document.querySelectorAll('.bttn'));
+btt1ns.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+// function to decide computer's random choice
+const ComputerChoice = function () {  
+    return selection[Math.floor(Math.random() * selection.length)]
+    
+   
+  }
+    
+// this function is mechanism of a single round
 function playRound(playerSelection, computerSelection) {
+ 
   
     switch (playerSelection + computerSelection) {
       case 'scissorspaper':
       case 'rockscissors':
       case 'paperrock':
-         playerscore++;
-         console.log("YOU WIN ! ###  " + playerSelection + " beats " + computerSelection + " player: " + playerscore + " " + "computer: " + computerscore);
+         playerScore++;
+         round.textContent = `${name} wins! ${playerSelection} beats ${computerSelection}`;
+         round.style.color = "#0be60bd5";
+         playerDisplay.textContent = `${playerScore}`;
+         computerDisplay.textContent = `${computerScore}`;        
 
           
         break;
       case 'paperscissors':
       case 'scissorsrock':
       case 'rockpaper':
-        computerscore++;
-        console.log("YOU LOSE ! ###  " + computerSelection + " beats " + playerSelection + " ### player: " + playerscore + " " + "computer: " + computerscore);
+        computerScore++;
+        round.textContent = `Computer wins ! ${computerSelection} beats ${playerSelection} `;
+        round.style.color = "red";
+        playerDisplay.textContent = `${playerScore}`;
+         computerDisplay.textContent = `${computerScore}`;
+        
         
         break;
       case 'paperpaper':
       case 'scissorsscissors':
       case 'rockrock':
-        console.log("It's a draw ###  " + playerSelection + " : " + computerSelection + " player: " + playerscore + " " + "computer: " + computerscore);
+        round.textContent = `It's a draw ${playerSelection} : ${computerSelection}`;
+        playerDisplay.textContent = `${playerScore}`;
+         computerDisplay.textContent = `${computerScore}`;
+         round.style.color = 'black'
+         
+
       
       break
     }
+    
   }
+
+  
     
   
    
  
-//five rounds of the game 
 
-function game() {
+function playGame() {  
+ 
 
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt();
-    const computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
+  playRound(playerSelection, computerSelection); 
+  
+  if (playerScore == 5 || computerScore == 5) {
+    setGameOver()
+  } 
+
+  
+   
+
+
 }
 
+function setGameOver() {   
+  document.getElementById("rock").disabled = true;
+  document.getElementById("scissors").disabled = true;
+  document.getElementById("paper").disabled = true;
+  resetButton = document.createElement('button');
+  resetButton.setAttribute('id', 'reset')
+  resetButton.textContent = 'Start new game';
+  document.body.append(resetButton);  
+  resetButton.addEventListener('click', resetGame);
+  document.getElementById('reset').focus();
+  
 }
 
-game()
+function resetGame() {
+  name = prompt('What is your name ? ','Player');
+  changeName(name);
+  document.getElementById("rock").disabled = false;
+  document.getElementById("scissors").disabled = false;
+  document.getElementById("paper").disabled = false;
+  playerScore = 0;
+  computerScore = 0;
+  round.textContent = "";
+  playerDisplay.textContent = `${playerScore}`;
+  computerDisplay.textContent = `${computerScore}`;
+
+  
+  resetButton.parentNode.removeChild(resetButton);
+  playersName();
+  
+
+  
+}
+
+function removeTransition(e) {
+  if (e.propertyName !== 'transform') return;
+  e.target.classList.remove('playing');
+}
+
+
+
 
 
 

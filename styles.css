@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+    
+    font-size: 1.2rem;
+    font-family:monospace, sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(48, 43, 61);
+    font-weight: 600;
+    
+}
+
+h1 {
+    width: 100vw;
+    text-align: center;
+    margin: 5rem 0;
+    color: whitesmoke;
+    text-shadow: 0 0 .5rem rgb(45, 255, 3);
+}
+
+.fa-solid {
+    font-size: 2rem;
+}
+    
+
+button {  
+
+    border: .4rem solid black;
+    border-radius: .5rem;
+    margin: .5rem;
+    font-size: .75rem;
+    padding: 1rem;
+    transition: all .09s ease;
+    width: fit-content;
+    max-width: 150px;
+    text-align: center;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    text-shadow: 0 0 .5rem rgb(45, 255, 3);
+
+  
+}
+.playing {
+    transform: scale(1.1);
+    border-color: #9dff00;
+    box-shadow: 0 0 1rem #0be60bd5;
+  }
+
+
+
+
+#game {
+    min-width: 200px;
+    max-width: 500px;   
+    min-height: 50%;
+    
+    margin: 0 auto;
+    border: .5rem solid rgba(0, 0, 0, 0.932);
+    display: flex;
+    
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+    
+    
+}
+
+#resultParas {
+    padding: 1rem;
+    align-self: flex-start;
+    margin-left: 1rem;
+   
+    
+    
+}
+
+#resultParas p {
+    margin-top: 2rem;
+}
+
+.bttns {
+    min-width: 200px;
+    padding: 1rem;
+    
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 3;
+   
+
+}
+
+#reset {
+    display: flex;
+   margin: 1rem auto;
+   padding: 0.5rem;
+}
