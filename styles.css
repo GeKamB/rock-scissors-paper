@@ -109,9 +109,11 @@ button:hover {
 }
 
 #reset {
-display: flex;
- font-size: 2rem;   
-
+position: absolute;
+ font-size: 2rem;
+ top: 48vh;
+ left: 48vw;   
+ 
    margin: 10px auto;
    padding: 0.5rem;
    color: rgba(247, 237, 237, 0.849);

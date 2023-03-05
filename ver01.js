@@ -73,7 +73,8 @@ function playRound(playerSelection, computerSelection) {
         round.textContent = `It's a draw ${playerSelection} : ${computerSelection}`;
         playerDisplay.textContent = `${playerScore}`;
          computerDisplay.textContent = `${computerScore}`;
-         round.style.textShadow = '-1px -1px .5rem rgba(134, 248, 3, 0.932)'
+         round.style.textShadow = '-1px -1px .5rem rgba(134, 248, 3, 0.932)';
+         round.style.color = 'white';
          
 
       
