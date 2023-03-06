@@ -8,15 +8,23 @@ const round = document.querySelector('.round');
 const playerDisplay = document.querySelector('.playerDisplay');
 const computerDisplay = document.querySelector('.computerDisplay');
 let playerName = document.querySelector('.playerName');
-let name = prompt('What is your name ? ','Player');
+let userName;
+
+function askUserName() {
+  userName = prompt("Please enter your name:");
+  changeName(userName); 
+}
 
 
 
-changeName(name);
+
+
+askUserName(); 
 const buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
+   
     playerSelection = e.target.id ;
     computerSelection = ComputerChoice();
     button.classList.add('playing'); 
@@ -49,7 +57,7 @@ function playRound(playerSelection, computerSelection) {
       case 'rockscissors':
       case 'paperrock':
          playerScore++;
-         round.textContent = `${name} wins! ${playerSelection} beats ${computerSelection}`;
+         round.textContent = `${userName} wins! ${playerSelection} beats ${computerSelection}`;
          round.style.color = "#0be60bd5";
          playerDisplay.textContent = `${playerScore}`;
          computerDisplay.textContent = `${computerScore}`;        
