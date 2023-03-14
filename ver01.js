@@ -126,8 +126,7 @@ function setGameOver() {
 }
 
 function resetGame() {
-  name = prompt('What is your name ? ','Player');
-  changeName(name);
+  askUserName(); 
   document.getElementById("rock").disabled = false;
   document.getElementById("scissors").disabled = false;
   document.getElementById("paper").disabled = false;
@@ -151,7 +150,7 @@ function removeTransition(e) {
 }
 
 function changeName(name) {
-  playerName.textContent = `${name}`; 
+  playerName.textContent = `${userName}`; 
 }
 
 
